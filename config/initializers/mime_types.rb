@@ -1,0 +1,1 @@
+Mime::Type.register "aplication/vnd.api+json", :json
