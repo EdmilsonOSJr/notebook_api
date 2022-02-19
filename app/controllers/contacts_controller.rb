@@ -5,12 +5,12 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
 
-    render json: @contacts, included: [:kind]
+    render json: @contacts, include: [:kind, :phones, :address]
   end
 
   # GET /contacts/1
   def show
-    render json: @contact, include: [:kind]#, meta: {author: "Edmilson"}#, methods: :birthdate_br 
+    render json: @contact, include: [:kind, :phones, :address]#, meta: {author: "Edmilson"}#, methods: :birthdate_br 
   end
 
   # POST /contacts
@@ -45,9 +45,11 @@ class ContactsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+        
     def contact_params
-      params.require(:contact).permit(:name, :email, :birthdate, :kind_id, 
-      phones_attributes: [:id, :number, :_destroy],
-      address_attributes: [:id, :street, :city])
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    #  params.require(:contact).permit(:name, :email, :birthdate, :kind_id, 
+    #  phones_attributes: [:id, :number, :_destroy],
+    #  address_attributes: [:id, :street, :city])
     end
 end
