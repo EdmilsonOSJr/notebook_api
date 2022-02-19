@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1
   def show
-    render json: @contact.to_br#, methods: :birthdate_br 
+    render json: @contact, include: [ :kind, phones: {except: [ :updated_at, :created_at ]} ]#, methods: :birthdate_br 
   end
 
   # POST /contacts

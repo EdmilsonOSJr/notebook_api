@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
 
+# This is a small gem which causes rails console to open pry
+gem 'pry-rails'
+
 # Centralization of locale data collection for Ruby on Rails.
 gem 'rails-i18n', '~> 7.0.0' # For 7.0.0
 
