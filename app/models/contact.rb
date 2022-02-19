@@ -16,4 +16,12 @@ class Contact < ApplicationRecord
     #        include: { kind: {only: :description} }
     #    )
     #end
+
+    def hello
+        I18n.t('hello')
+    end
+
+    def I18n
+        I18n.default_locale
+    end
 end
