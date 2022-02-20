@@ -1,5 +1,11 @@
 class KindsController < ApplicationController
+
+  include ActionController::HttpAuthentication::Token::ControllerMethods
   before_action :set_kind, only: %i[ show update destroy ]
+  before_action :authenticate
+
+  TOKEN = "secret123"
+
 
   # GET /kinds
   def index
@@ -53,4 +59,13 @@ class KindsController < ApplicationController
     def kind_params
       params.require(:kind).permit(:description)
     end
+
+    def authenticate
+      authenticate_or_request_with_http_token do |token, options|
+        # Compare the tokens in a time-constant manner, to mitigate
+        # timing attacks.
+        ActiveSupport::SecurityUtils.secure_compare(token, TOKEN)
+      end
+    end
+
 end
