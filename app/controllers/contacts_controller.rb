@@ -10,7 +10,10 @@ include ErrorSerializer
 
     @contacts = Contact.all.page(page_number).per(per_page)
 
-    render json: @contacts, include: [:kind, :phones, :address]
+    # cach-control -------- expires_in 30.seconds, public: true
+    if stale?(etag: @contacts)
+      render json: @contacts, include: [:kind, :phones, :address]
+    end
   end
 
   # GET /contacts/1
