@@ -4,7 +4,7 @@ class KindsController < ApplicationController
   before_action :set_kind, only: %i[ show update destroy ]
   before_action :authenticate
 
-  TOKEN = "secret123"
+  #TOKEN = "secret123"
 
 
   # GET /kinds
@@ -62,9 +62,11 @@ class KindsController < ApplicationController
 
     def authenticate
       authenticate_or_request_with_http_token do |token, options|
+        hmac_secret = 'my$ecretK3y'
+        JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
         # Compare the tokens in a time-constant manner, to mitigate
         # timing attacks.
-        ActiveSupport::SecurityUtils.secure_compare(token, TOKEN)
+        #ActiveSupport::SecurityUtils.secure_compare(token, TOKEN)
       end
     end
 

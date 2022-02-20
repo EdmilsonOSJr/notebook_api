@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
 
+# A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
+gem 'jwt'
+
 # ActiveModelSerializers brings convention over configuration to your JSON generation.
 gem 'active_model_serializers', '~> 0.10.0'
 
