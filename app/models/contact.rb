@@ -4,6 +4,10 @@ class Contact < ApplicationRecord
     has_many :phones
     has_one :address
 
+    # validations
+    validates_presence_of :kind
+    validates_presence_of :address
+
     # kaminare
     paginates_per  5
 
