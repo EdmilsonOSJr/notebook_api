@@ -21,6 +21,8 @@ gem "puma", "~> 5.0"
 # This gem is a port of Perl's Data::Faker library that generates fake data.
 gem "faker"
 
+gem 'kaminari'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
